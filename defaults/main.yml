@@ -1,2 +1,7 @@
 ---
-# defaults file for minio
+minio_access_key: "AKIAIOSFODNN7EXAMPLE"
+minio_secret_key: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
+minio_mode: standalone
+minio_podman_network: podman
+minio_hostname: minio
+minio_domain: example.com

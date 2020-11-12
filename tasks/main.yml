@@ -1,2 +1,26 @@
 ---
-# tasks file for minio
+- name: Create MinIO data volume
+  containers.podman.podman_volume:
+    state: present
+    name: minio-data-volume
+    label:
+      app: minio
+
+- name: Create MinIO Pod
+  containers.podman.podman_pod:
+    name: minio-pod
+    state: started
+    network: '{{ minio_podman_network }}'
+    hostname: '{{ minio_hostname }}.{{ minio_domain }}'
+
+- name: Run MinIO Container
+  containers.podman.podman_container:
+    name: minio
+    image: docker.io/minio/minio
+    pod: minio-pod
+    env:
+      MINIO_ACCESS_KEY: '{{ minio_access_key }}'
+      MINIO_SECRET_KEY: '{{ minio_secret_key }}'
+    volume:
+      - minio-data-volume:/data
+    command: "server /data"
