@@ -1,0 +1,23 @@
+---
+- name: Create MinIO data volume
+  containers.podman.podman_volume:
+    state: present
+    name: 'minio-data-volume-{{ item }}'
+    label:
+      app: minio
+  loop: '{{ range(0, 4)|list }}'
+
+- name: Run MinIO Container
+  containers.podman.podman_container:
+    name: minio
+    image: docker.io/minio/minio
+    pod: minio-pod
+    env:
+      MINIO_ACCESS_KEY: '{{ minio_access_key }}'
+      MINIO_SECRET_KEY: '{{ minio_secret_key }}'
+    volume:
+      - minio-data-volume-0:/data0
+      - minio-data-volume-1:/data1
+      - minio-data-volume-2:/data2
+      - minio-data-volume-3:/data3
+    command: "server /data{0...3}"
