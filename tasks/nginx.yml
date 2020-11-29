@@ -1,0 +1,27 @@
+---
+- name: Create minio nginx config directory
+  file:
+    path: '{{ minio_nginx_config_dir }}'
+    owner: root
+    group: root
+    mode: '0755'
+    state: directory
+
+- name: Create minio nginx config file
+  template:
+    src: minio-proxy.conf.j2
+    dest: '{{ minio_nginx_config_dir }}/proxy_config.conf'
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Create Standard Gitea Proxy
+  containers.podman.podman_container:
+    name: minio-proxy
+    image: docker.io/library/nginx:latest
+    pod: minio-pod
+    conmon_pidfile: /var/lib/containers/pids/minio-proxy.pid
+    volume:
+      - /var/lib/containers/minio-proxy/proxy_config.conf:/etc/nginx/conf.d/default.conf:Z
+    state: started
+

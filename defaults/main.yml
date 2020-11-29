@@ -5,3 +5,4 @@ minio_secret_key: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
 minio_podman_network: podman
 minio_hostname: minio
 minio_domain: example.com
+minio_nginx_config_dir: /var/lib/containers/minio-proxy

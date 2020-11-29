@@ -14,3 +14,5 @@
 
 - include_tasks: erasure-code.yml
   when: minio_mode == 'erasure-code'
+
+- include_tasks: nginx.yml
