@@ -17,3 +17,8 @@
     volume:
       - minio-data-volume:/data
     command: "server /data"
+
+- name: Generate systemd file for MinIO
+  include_tasks: systemd.yml
+  loop:
+    - minio

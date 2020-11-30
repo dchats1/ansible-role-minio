@@ -21,3 +21,8 @@
       - minio-data-volume-2:/data2
       - minio-data-volume-3:/data3
     command: "server /data{0...3}"
+
+- name: Generate systemd file for MinIO
+  include_tasks: systemd.yml
+  loop:
+    - minio

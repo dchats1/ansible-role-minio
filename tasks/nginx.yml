@@ -25,3 +25,7 @@
       - /var/lib/containers/minio-proxy/proxy_config.conf:/etc/nginx/conf.d/default.conf:Z
     state: started
 
+- name: Generate systemd file for Nginx
+  include_tasks: systemd.yml
+  loop:
+    - minio-proxy

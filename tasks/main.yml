@@ -1,4 +1,7 @@
 ---
+- set_fact:
+    services_to_restart: []
+
 - name: Create MinIO Pod
   containers.podman.podman_pod:
     name: minio-pod
@@ -16,3 +19,17 @@
   when: minio_mode == 'erasure-code'
 
 - include_tasks: nginx.yml
+
+- debug:
+    msg: '{{ services_to_restart }}'
+
+- name: daemon-reload
+  systemd:
+    daemon-reload: yes
+  when: services_to_restart | length > 0
+
+- name: Restart Service(s)
+  systemd:
+    name: '{{ item }}'
+    state: restarted
+  loop: '{{ services_to_restart }}'

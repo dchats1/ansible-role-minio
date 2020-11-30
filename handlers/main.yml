@@ -1,2 +1,4 @@
 ---
-# handlers file for minio
+- name: daemon-reload
+  systemd:
+    daemon-reload: yes
