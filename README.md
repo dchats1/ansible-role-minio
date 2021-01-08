@@ -14,7 +14,7 @@ Role Variables
 Variable              | Description
 ----------------------|------------------------------------------
 minio_mode            | Mode to run MinIO. Either standard or erasure-code. (Default: standard)
-minio_access_key      | Access Key (Default: AKIAIOSFODNN7EXAMPLE")
+minio_access_key      | Access Key (Default: AKIAIOSFODNN7EXAMPLE)
 minio_secret_key      | Secret Key (Default: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY)
 minio_podman_network  | Podman network to run the container on. (Default: podman)
 minio_hostname        | Hostname for the pod. (Default: minio)
