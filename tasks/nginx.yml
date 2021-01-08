@@ -15,7 +15,7 @@
     group: root
     mode: '0644'
 
-- name: Create Standard Gitea Proxy
+- name: Create Nginx Proxy
   containers.podman.podman_container:
     name: minio-proxy
     image: docker.io/library/nginx:latest

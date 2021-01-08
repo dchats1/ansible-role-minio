@@ -12,6 +12,7 @@
     name: minio
     image: docker.io/minio/minio
     pod: minio-pod
+    conmon_pidfile: /var/lib/containers/pids/minio.pid
     env:
       MINIO_ACCESS_KEY: '{{ minio_access_key }}'
       MINIO_SECRET_KEY: '{{ minio_secret_key }}'
