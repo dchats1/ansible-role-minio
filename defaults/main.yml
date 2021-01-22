@@ -6,3 +6,4 @@ minio_podman_network: podman
 minio_hostname: minio
 minio_domain: example.com
 minio_nginx_config_dir: /var/lib/containers/minio-proxy
+minio_prometheus_auth_type: jwt
